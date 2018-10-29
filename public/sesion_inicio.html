@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png"/>
     <link rel="stylesheet" href="css/estilos1.css">
 
     <title>Inicia Sesion</title>
@@ -13,10 +14,17 @@
 <body>
     <form class="login">
         <h1 class="login-title">Iniciar Sesion!</h1>
-        <input type="text" class="login-input" placeholder="Correo Electronico" autofocus>
-        <input type="password" class="login-input" placeholder="Contraseña">
+        <input type="text" class="login-input" placeholder="Correo Electronico" autofocus required>
+        <input type="password" class="login-input" placeholder="Contraseña" required>
         <input type="submit" value="Iniciar sesion" class="login-button">
-      <p class="login-lost"><a href="">¿olvide la contraseña?</a></p>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Recuerdame
+        </label>
+        <div class="container" style="background-color:#f1f1f1">
+                <button type="button" class="cancelbtn">Cancelar</button>
+                <span class="psw"><a href="#">Olvide la contraseña?</a></span>
+        </div>
+      
       </form>
 </body>
 </html>

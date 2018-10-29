@@ -64,3 +64,7 @@ h1.login-title {
   text-decoration:none;
   font-size:13px;
 }
+
+.container {
+  padding: 16px;
+}
