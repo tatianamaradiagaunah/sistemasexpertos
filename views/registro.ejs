@@ -14,18 +14,25 @@
 <body>
     <form class="login">
         <h1 class="login-title">Registrate!</h1>
-        <input type="text" class="login-input" placeholder="Nombre" autofocus required>
-        <input type="text" class="login-input" placeholder="Nombre de Usuario" required>
-        <input type="text" class="login-input" placeholder="Correo" required>
-        <input type="password" class="login-input" placeholder="Contraseña"  required>
-        <input type="password" class="login-input" placeholder="Repita la Contraseña" required>
+        <input type="text" class="login-input" placeholder="Nombre" name="nombre1" id="Nombre" required>
+        <input type="text" class="login-input" placeholder="Apellido" name="apellido1" id="Apellido1" required>
+        <input type="text" class="login-input" placeholder="Correo" name="correo1" id="correo1" required>
+        <input type="password" class="login-input" placeholder="Contraseña" name="contra" id="contra" required>
+        <input type="password" class="login-input" placeholder="Repita la Contraseña" name="repita" id="repita" required>
         <input name="cecky" id="checky" value="1" type="checkbox" required/><label class="terms">Acepto los terminos</label>
+       <div>
+        <span id="mostrar" style="color:red; font-size: 14px; display: none">Las contraseñas no coinciden</span>
+       </div>
         <p></p>
         <input type="submit" value="Registrate" class="login-button">
         <p> </p>
-        <input type="submit" value="Cancelar" class="login-button"> 
+        <input id="btn-registrar" type="submit" value="Cancelar" class="login-button" value="Registrarse"> 
       </form>
     
     </div>
+
+    <script>
+        src="../public/js/controlador.js"
+    </script>
 </body>
 </html>
