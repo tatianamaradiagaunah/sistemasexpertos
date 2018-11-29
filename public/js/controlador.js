@@ -1,17 +1,18 @@
-
 $(document).ready(function(){
     $('#btn-registrar').click(function () {
         var id_usario;
-        var parametros = `nombre=${$("#nombre1").val()}&apellido=${$("#apellido1").val()}&correo=${$("#correo1").val()}&contraseña=${$("#contra").val()}&rrepita=${$("#repita").val()}`;
+        var parametros = `nombre=${$("#regnom").val()}&apellidos=${$("#regapell").val()}&email=${$("#regemail").val()}&password=${$("#regpassword").val()}&confpassword=${$("#confpassword").val()}&telefono=${$("#regtelefono").val()}&genero=${$("#slgen").val()}`;
         //console.log(parametros);
-        if ($("#repita").val()==$("#contra").val() &&  
-        $("#nombre1").val()!="" && 
-        $("#apellido1").val()!="" &&
-        $("#correo1").val()!="" &&
+        var indice = document.getElementById("slgen").selectedIndex;
+        if ($("#confpassword").val()==$("#regpassword").val() &&  
+        $("#regnom").val()!="" && 
+        $("#regapell").val()!="" &&
+        $("#regemail").val()!="" &&
+        $("#regtelefono").val()!="" &&
         indice != null  || indice != 0 
         ){
-            document.getElementById("contra").style.borderColor='green';
-            document.getElementById("repita").style.borderColor='green';
+            document.getElementById("regpassword").style.borderColor='green';
+            document.getElementById("confpassword").style.borderColor='green';
             $.ajax({
                 url: "/guardar",
                 method: "POST",
@@ -20,7 +21,7 @@ $(document).ready(function(){
                 success: function (respuesta) {
                     console.log(respuesta);
                     id_usario=respuesta.insertId;
-                    var ingreso_usuario=`correo=${$("#correo1").val()}&contraseña=${$("#contra").val()}&id=${id_usario}`;
+                    var ingreso_usuario=`email=${$("#regemail").val()}&password=${$("#regpassword").val()}&id=${id_usario}`;
                     //console.log(ingreso_usuario);
                     $.ajax({
                         url: "/guardarUsua",
@@ -41,18 +42,22 @@ $(document).ready(function(){
                 }
             });
         } 
-        else if($("#nombre1").val()==""){
-            document.getElementById("nombre1").style.borderColor='red';
-        }else if($("#apellido1").val()==""){
-            document.getElementById("apellido1").style.borderColor='red';
-        }else if($("#correo1").val()==""){
-            document.getElementById("correo1").style.borderColor='red';
-        }else if($("#contra").val()==""){
-            document.getElementById("contra").style.borderColor='red';
-        }else if($("#repita").val()==""){
-            document.getElementById("repita").style.borderColor='red';
-        } else if($("#repita").val()!=$("#contra").val()){
+        else if($("#regnom").val()==""){
+            document.getElementById("regnom").style.borderColor='red';
+        }else if($("#regapell").val()==""){
+            document.getElementById("regapell").style.borderColor='red';
+        }else if($("#regemail").val()==""){
+            document.getElementById("regemail").style.borderColor='red';
+        }else if($("#regpassword").val()==""){
+            document.getElementById("regpassword").style.borderColor='red';
+        }else if($("#confpassword").val()==""){
+            document.getElementById("confpassword").style.borderColor='red';
+        } else if($("#confpassword").val()!=$("#regpassword").val()){
             document.getElementById("mostrar").style.display='block';
+        }else if($("#regtelefono").val()==""){
+            document.getElementById("regtelefono").style.borderColor='red';
+        }else if ($("#slgen").val()==""){
+            document.getElementById("slgen").style.borderColor='red';
         }
 
 
@@ -63,12 +68,10 @@ $(document).ready(function(){
 
    
 
+
     // ***************************************************
    
 
     //********************************************************************** */
-
-   
-
-
 });
+   

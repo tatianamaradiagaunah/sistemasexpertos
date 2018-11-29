@@ -32,8 +32,8 @@ module.exports = function(app, passport) {
 
                    /* REGISTRARSE*/
 
-     app.get('/registro', function(req, res){
-        res.render('registro.ejs',{
+     app.get('/registro-usuarios', function(req, res){
+        res.render('registro-usuarios.ejs',{
             user:req.user
            });
         res.end();
@@ -42,9 +42,9 @@ module.exports = function(app, passport) {
 
     app.post("/guardar", function (req, res) {
         connection.query(`
-            INSERT INTO tbl_persona ( cod_persona, nombre_persona, apellido_persona) 
-            VALUES (?,?,?)`,
-            [ req.body.nombre, req.body.apellido],
+            INSERT INTO persona ( cod_genero, telefono, nombre_persona, apellido_persona) 
+            VALUES (?,?,?,?)`,
+            [ req.body.genero, req.body.telefono,req.body.nombre, req.body.apellido],
             function (error, data, fields) {
                 res.send(data);
                 res.end();
@@ -57,7 +57,7 @@ module.exports = function(app, passport) {
         console.log(req.body.id, req.body.password,req.body.email);
     
         connection.query(`
-            INSERT INTO tbl_usuario (id, username, password) 
+            INSERT INTO usuario (id, username, password) 
             VALUES (?,?,?)`,
             [req.body.id, req.body.email, bcrypt.hashSync(req.body.password, null, null)],
             function (error, data, fields) {
