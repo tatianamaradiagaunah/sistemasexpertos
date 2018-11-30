@@ -57,11 +57,13 @@ module.exports = function(app, passport) {
    
   //Registro Usuario
 
-   app.get('/registroUsuarios', function(req, res){
-       res.render('registro-usuarios.ejs',{
-           user:req.user
-          });
-   });
+  app.get('/registroUsuarios', function(req, res){
+    res.render('registro-usuarios.ejs',{
+        user:req.user
+       });
+    res.end();
+    
+});
    
    
    app.post("/guardar", function (req, res) {
