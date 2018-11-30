@@ -14,11 +14,14 @@
 <body>
     <form class="login">
         <h1 class="login-title">Registrate!</h1>
-        <input type="text" class="login-input" placeholder="Nombre" name="nombre1" id="Nombre" required>
-        <input type="text" class="login-input" placeholder="Apellido" name="apellido1" id="Apellido1" required>
-        <input type="text" class="login-input" placeholder="Correo" name="correo1" id="correo1" required>
-        <input type="password" class="login-input" placeholder="Contraseña" name="contra" id="contra" required>
-        <input type="password" class="login-input" placeholder="Repita la Contraseña" name="repita" id="repita" required>
+        <input type="text" class="login-input" placeholder="Nombre" name="regnom" id="regnom" required>
+        <input type="text" class="login-input" placeholder="Apellido" name="regapell" id="regapell" required>
+        <div>
+            <input type="email" class="login-input" placeholder="Correo" name="regemail" id="regemail" required>
+            <span id="emailOK"></span>
+        </div>
+        <input type="password" class="login-input" placeholder="Contraseña" name="regpassword" id="regpassword" required>
+        <input type="password" class="login-input" placeholder="Repita la Contraseña" name="confpassword" id="confpassword"  required>
         <input name="cecky" id="checky" value="1" type="checkbox" required/><label class="terms">Acepto los terminos</label>
        <div>
         <span id="mostrar" style="color:red; font-size: 14px; display: none">Las contraseñas no coinciden</span>
@@ -26,7 +29,7 @@
         <p></p>
         <input type="submit" value="Registrate" class="login-button">
         <p> </p>
-        <input id="btn-registrar" type="submit" value="Cancelar" class="login-button" value="Registrarse"> 
+        <input id="btn-registrar" type="button" value="Cancelar" class="login-button" value="Registrarse"> 
       </form>
     
     </div>

@@ -32,8 +32,8 @@ module.exports = function(app, passport) {
 
                    /* REGISTRARSE*/
 
-     app.get('/registro-usuarios', function(req, res){
-        res.render('registro-usuarios.ejs',{
+     app.get('/registro', function(req, res){
+        res.render('registro.ejs',{
             user:req.user
            });
         res.end();
@@ -42,9 +42,9 @@ module.exports = function(app, passport) {
 
     app.post("/guardar", function (req, res) {
         connection.query(`
-            INSERT INTO persona ( cod_genero, telefono, nombre_persona, apellido_persona) 
-            VALUES (?,?,?,?)`,
-            [ req.body.genero, req.body.telefono,req.body.nombre, req.body.apellido],
+            INSERT INTO persona (nombre_persona, apellido_persona) 
+            VALUES (?,?)`,
+            [ req.body.nombre, req.body.apellido],
             function (error, data, fields) {
                 res.send(data);
                 res.end();
@@ -66,6 +66,14 @@ module.exports = function(app, passport) {
                 res.end();
             }
         );
+        
+    });
+
+    app.get('/inicio', function(req, res){
+        res.render('inicio.ejs',{
+            user:req.user
+           });
+        res.end();
         
     });
 };

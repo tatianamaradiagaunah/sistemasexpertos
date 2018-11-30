@@ -1,15 +1,12 @@
 $(document).ready(function(){
     $('#btn-registrar').click(function () {
         var id_usario;
-        var parametros = `nombre=${$("#regnom").val()}&apellidos=${$("#regapell").val()}&email=${$("#regemail").val()}&password=${$("#regpassword").val()}&confpassword=${$("#confpassword").val()}&telefono=${$("#regtelefono").val()}&genero=${$("#slgen").val()}`;
+        var parametros = `nombre=${$("#regnom").val()}&apellido=${$("#regapell").val()}&email=${$("#regemail").val()}&password=${$("#regpassword").val()}&confpassword=${$("#confpassword").val()}}`;
         //console.log(parametros);
-        var indice = document.getElementById("slgen").selectedIndex;
         if ($("#confpassword").val()==$("#regpassword").val() &&  
         $("#regnom").val()!="" && 
         $("#regapell").val()!="" &&
-        $("#regemail").val()!="" &&
-        $("#regtelefono").val()!="" &&
-        indice != null  || indice != 0 
+        $("#regemail").val()!="" 
         ){
             document.getElementById("regpassword").style.borderColor='green';
             document.getElementById("confpassword").style.borderColor='green';
@@ -19,10 +16,10 @@ $(document).ready(function(){
                 data: parametros,
                 dataType: "json",
                 success: function (respuesta) {
-                    console.log(respuesta);
+                    //console.log(respuesta);
                     id_usario=respuesta.insertId;
                     var ingreso_usuario=`email=${$("#regemail").val()}&password=${$("#regpassword").val()}&id=${id_usario}`;
-                    //console.log(ingreso_usuario);
+                    console.log(ingreso_usuario);
                     $.ajax({
                         url: "/guardarUsua",
                         method: "POST",
@@ -54,14 +51,7 @@ $(document).ready(function(){
             document.getElementById("confpassword").style.borderColor='red';
         } else if($("#confpassword").val()!=$("#regpassword").val()){
             document.getElementById("mostrar").style.display='block';
-        }else if($("#regtelefono").val()==""){
-            document.getElementById("regtelefono").style.borderColor='red';
-        }else if ($("#slgen").val()==""){
-            document.getElementById("slgen").style.borderColor='red';
         }
-
-
-
     });
 
     // **********************************************************************************
