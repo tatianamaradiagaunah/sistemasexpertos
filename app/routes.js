@@ -54,6 +54,16 @@ module.exports = function(app, passport) {
    var bcrypt = require('bcrypt-nodejs');
    var connection = mysql.createConnection(dbconfig.connection);
    connection.query('USE ' + dbconfig.database);
+
+   app.get('/profile', function (req, res) {
+         connection.query("SELECT * FROM tbl_usuario", function (err, resul) {
+             console.log(resul[0]);
+             res.render('profile.ejs', {
+                 usuarios: resul,
+                 user: req.user
+            });
+         });
+    });
    
   //Registro Usuario
 
