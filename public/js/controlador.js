@@ -66,104 +66,129 @@ $(document).ready(function(){
     });
 
     // **********************************************************************************
-
-    $("#btn-buscar").click(function(){
-        var parametros = `buscar=${$("#txt-buscar").val()}`;
-        console.log(parametros);
+    function seleccionarContacto(codigoContacto, nombreContacto, urlImagen){
+        //alert("Obtener conversación entre: " + codigoContacto + ",  y " + $("#slc-usuario").val());
+        $("#receptor").val(codigoContacto);
+        $("#contacto-seleccionado").html(nombreContacto);
+        $("#imagen-contacto").attr("src",urlImagen);
+        cargarConversacion(codigoContacto);
+    }
+    
+    function cargarConversacion(codigoContacto){
         $.ajax({
-            url: "/buscar",
-            method: "POST",
-            data: parametros,
-            dataType: "json",
-            success: function(res){
+            url:`/mensajes/${$("#slc-usuario").val()}/${codigoContacto}`,
+            method:"GET",
+            dataType:"json",
+            success:function(res){
                 console.log(res);
-                $('#contenedor-empresas').html("");
-                $("#txt-buscar").val("");
-                res.forEach(element => {
-                    $("#contenedor-empresas").append(
-                        `<div class="col-lg-4 text-center mb-4 col-lg-4 col-md-4 col-sm-4">
-                            <div class="border rounded" style="box-shadow: 2px 2px 5px #999">
-                            <div>
-                                <img class="img responsive" src="../public/img/${element.cod_empresa}.jpg">
-                                <h3>${element.nombre_empresa}</h3>
-                                <div class="col-lg-12">
-                                <button class="btn btn-primary" type="button" id="${element.cod_empresa}">Rutas</button>
-                                <a class="btn" style="background-color:transparent" href="/dashboard/${element.cod_empresa}">Ver descripcion</a>
-                                
-                                </div>
-                            </div><br>
-                            <div >
-                                <table class="table">
-                                    <tbody id="tbl${element.cod_empresa}">
-                                        
-                                    </tbody>
-                                </table>
-                                </div>
-                            </div>
-                        </div>`
-
-                    )
-                });
-
+                $("#conversation").html("");
+                for (var i=0;i<res.length;i++){
+                    var claseCss="receiver";
+                    if (res[i].codigo_usuario_emisor == $("#slc-usuario").val())
+                        claseCss="sender";
+                    anexarMensaje(claseCss,res[i].mensaje,res[i].hora_mensaje);
+                }
             },
-            error: function(error){
+            error:function(error){
                 console.error(error);
             }
         });
-    });
-
-
-    // ***************************************************
-    $('#contenedor-empresas').click(function(e){
-        var id = e.target.id;
-        // alert(id); 
-        var parametros = `id=${id}`;
-        console.log(parametros);
+    }
+    
+    function anexarMensaje(claseCss,mensaje,hora_mensaje){
+        $("#conversation").append(
+            `<div class="row message-body">
+            <div class="col-sm-12 message-main-${claseCss}">
+              <div class="${claseCss}">
+                <div class="message-text">
+                 ${mensaje}
+                </div>
+                <span class="message-time pull-right">
+                  ${hora_mensaje}
+                </span>
+              </div>
+            </div>
+          </div>`
+        );
+    }
+    
+    $("#btn-enviar").click(function(){
+        /*alert("Enviar mensaje: " + $("#txta-mensaje").val() + 
+                ", Emisor: " + $("#slc-usuario").val() + 
+                ", Receptor: " + $("#receptor").val());*/
+    
         $.ajax({
-            url: "/rutas",
-            method: "POST",
-            data: parametros, 
-            dataType: "json",
-            success: function(res){
-                console.log(res[1].cod_empresa);
-                $("#tbl"+`${res[1].cod_empresa}`).html("");
-                res.forEach(element => {
-                    $("#tbl"+`${element.cod_empresa}`).append(
-                        `<tr>
-                            <td>${element.Origen}</td>
-                            <td>${element.Destino}</td>
-                        </tr>
-                        `
-                    )
-                });
-
+            url:"/enviar",
+            data:`emisor=${$("#slc-usuario").val()}&receptor=${$("#receptor").val()}&mensaje=${$("#txta-mensaje").val()}&hora=66:66`,
+            dataType:"json",
+            method:"POST",
+            success:function(res){
+                console.log(res);
+                if (res.affectedRows==1){
+                    claseCss="sender";
+                    anexarMensaje(claseCss,$("#txta-mensaje").val(),"66:66");
+                    $("#txta-mensaje").val("");
+                }else{
+                    alert("Error al guardar mensaje");
+                }
             },
-            error: function(error){
+            error:function(error){
                 console.log(error);
             }
         });
     });
+    
+    $(document).ready(function(){
+        $.ajax({
+            url:"/usuarios",
+            method:"GET",
+            dataType:"json",
+            success:function(res){
+                console.log(res);
+                for (var i=0;i<res.length;i++){
+                    $("#slc-usuario").append(`<option value="${res[i].cod_persona}">${res[i].nombre_persona}</option>`);
+                    $("#contactos").append(
+                        `<div class="row sideBar-body" onclick="seleccionarContacto(${res[i].cod_persona},'${res[i].nombre_persona}','${res[i].img_perfil}');">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                            <div class="avatar-icon">
+                                <img src="${res[i].img_perfil}">
+                            </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                            <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                <span class="name-meta">${res[i].nombre_persona}
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>`
+                    );
+                }
+            },
+            error:function(error){
+                console.error(error);
+            }
+        });
+    
+        setInterval(function(){
+                if($("#receptor").val()!=""){
+                    $("#conversation").html("");
+                    cargarConversacion($("#receptor").val());
+                }
+            },	5000
+        );
+    });
+    // ***************************************************
+   
 
     //********************************************************************** */
 
-    $("#btn-conf-compra").click(function(){
-        var parametros = `empresa=${$("#slc-empresa").val()}&ruta=${$("#slc-rutas").val()}&numtarjeta=${$("#numTarjet").val()}&fecha=${$("#fechaV").val()}&csv=${$("#codigoV").val()}&cod_usuario=${$("#txt-codigoUsuario").val()}`; 
-       console.log(parametros);
-         $.ajax({
-             url: "/comprarboleto",
-             method: "POST",
-             data: parametros,
-             dataType: "json",
-             success: function(res){
-                 console.log(res);
-                $('#modal2').modal('toggle');
-                $('#completo').html('Compra realizada con exito');
-             },
-             error: function(error){
-                 console.error(error);
-             }
-         });
-    });
+    
 
 
 });
