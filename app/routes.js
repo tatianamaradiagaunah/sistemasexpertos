@@ -64,6 +64,12 @@ module.exports = function(app, passport) {
             });
          });
     });
+
+    app.get('/chat', function(req, res){
+        res.render('chat.ejs', {
+         user:req.user
+        });
+    });
    
   //Registro Usuario
 

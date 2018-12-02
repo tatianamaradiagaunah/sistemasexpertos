@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="shortcut icon" href="../public/img/icon_bus.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../public/css/dashboard.css">
+    <title>codiGo</title>
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-light encabezado bg-dark sticky-top">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand text1">
+          <strong>codi</strong>
+          <img src="../public/img/favicon.png" height="38px" width="38px">
+          <strong>Go</strong>
+        </a>
+        <button style="background-color: white; margin-left: auto;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <form class="form-inline">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Buscar" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+              </form>
+            </li>
+            <li class="nav-item active">
+              <a href="/" class="nav-link text-white">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white">Soporte</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white">Ayuda</a>
+            </li>
+            <li class="nav-item">
+              <a href="/logout" class="nav-link text-white">Cerrar sesión</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- dashboard -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-xs-12 col-sm-12 col-md-2 col-lg-3 col-xl-3 bg-secondary p-1 border-right">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item active">
+                <a href="#" class="nav-link text-light">
+                  <i class="fas fa-building"></i> Proyecto
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/profile" class="nav-link text-light">
+                  <i class="fas fa-user"></i> Perfil de usuario
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/chat" class="nav-link text-light">
+                  <i class="fas fa-user"></i> Chat
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link text-light">
+                  <i class="fas fa-chalkboard-teacher"></i> Reclamar sitio web
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link text-light">
+                  <i class="fas fa-cogs"></i> Configuracion
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link text-light">
+                  <i class="fas fa-money-check"></i> Estado de cuenta
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+
+        <main class="col-xs-12 col-sm-12 col-md-10 col-lg-9 col-xl-9 bg-light mh-100 p-5">
+          <div class="container app">
+            <div class="row app-one">
+        
+              <div class="col-sm-4 side">
+                <div class="side-one">
+                  <!-- Heading -->
+                  <div class="row heading">
+                    <div class="col-sm-3 col-xs-3 heading-avatar">
+                      <div class="heading-avatar-icon">
+                        <img src="img/profile-pics/vegeta.jpg">
+                      </div>
+                    </div>
+                    <div class="col-sm-5 col-xs-5" style="padding:0;">
+                        <select id="slc-usuario" class="form-control"></select>
+                    </div>
+                    <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
+                      <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
+                      <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                  <!-- Heading End -->
+        
+                  <!-- SearchBox -->
+                  <div class="row searchBox">
+                    <div class="col-sm-12 searchBox-inner">
+                      <div class="form-group has-feedback">
+                        <input id="searchText" type="text" class="form-control" name="searchText" placeholder="Search">
+                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <!-- Search Box End -->
+                  <!-- sideBar -->
+                  <div class="row sideBar" id="contactos">
+                  </div>
+                  <!-- Sidebar End -->
+                </div>
+                <div class="side-two">
+        
+                  <!-- Heading -->
+                  <div class="row newMessage-heading">
+                    <div class="row newMessage-main">
+                      <div class="col-sm-2 col-xs-2 newMessage-back">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                      </div>
+                      <div class="col-sm-10 col-xs-10 newMessage-title">
+                        New Chat
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Heading End -->
+        
+                  <!-- ComposeBox -->
+                  <div class="row composeBox">
+                    <div class="col-sm-12 composeBox-inner">
+                      <div class="form-group has-feedback">
+                        <input id="composeText" type="text" class="form-control" name="searchText" placeholder="Search People">
+                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ComposeBox End -->
+                </div>
+                <!-- Sidebar End -->
+              </div>
+        
+        
+              <!-- New Message Sidebar End -->
+        
+              <!-- Conversation Start -->
+              <div class="col-sm-8 conversation">
+                <!-- Heading -->
+                <div class="row heading">
+                  <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+                    <div class="heading-avatar-icon">
+                      <img id="imagen-contacto" src="">
+                    </div>
+                  </div>
+                  
+        
+                  <div class="col-sm-8 col-xs-7 heading-name">
+                    <span class="heading-name-meta" id="contacto-seleccionado"></span>
+                  </div>
+                  <input type="hidden" id="receptor">
+        
+        
+                  <div class="col-sm-1 col-xs-1  heading-dot pull-right">
+                    <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <!-- Heading End -->
+        
+                <!-- Message Box -->
+                <div class="row message" id="conversation">
+        
+                  <div class="row message-previous">
+                    <div class="col-sm-12 previous">
+                    </div>
+                  </div>
+        
+                  
+                </div>
+        
+        
+                <!-- Message Box End -->
+        
+                <!-- Reply Box -->
+                <div class="row reply">
+                  <div class="col-sm-1 col-xs-1 reply-emojis">
+                    <i class="fa fa-smile-o fa-2x"></i>
+                  </div>
+                  <div class="col-sm-9 col-xs-9 reply-main">
+                    <textarea class="form-control" rows="1" id="txta-mensaje"></textarea>
+                  </div>
+                  <div class="col-sm-1 col-xs-1 reply-recording">
+                    <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div id="btn-enviar" class="col-sm-1 col-xs-1 reply-send">
+                    <i class="fa fa-send fa-2x" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <!-- Reply Box End -->
+              </div>
+              <!-- Conversation End -->
+            </div>
+            <!-- App One End -->
+          </div>
+        
+        </main>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="../public/js/controlador.js"></script>
+    <script src="../public/js/dashboard.js"></script>
+  </body>
+</html>
