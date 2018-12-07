@@ -184,7 +184,24 @@ $(document).ready(function(){
         );
     });
     // ***************************************************
-   
+    $("#btn-conf-compra").click(function(){
+        var parametros = `numtarjeta=${$("#numTarjet").val()}&fecha=${$("#fechaV").val()}&csv=${$("#codigoV").val()}&cod_usuario=${$("#txt-codigoUsuario").val()}`; 
+       console.log(parametros);
+         $.ajax({
+             url: "/comprarboleto",
+             method: "POST",
+             data: parametros,
+             dataType: "json",
+             success: function(res){
+                 console.log(res);
+                $('#modal2').modal('toggle');
+                $('#completo').html('Compra realizada con exito');
+             },
+             error: function(error){
+                 console.error(error);
+             }
+         });
+    });
 
     //********************************************************************** */
 

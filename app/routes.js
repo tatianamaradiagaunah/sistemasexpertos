@@ -79,6 +79,19 @@ module.exports = function(app, passport) {
             res.end();
     });
 
+    app.post("/comprarboleto", function (req, res) {
+        connection.query(`
+            INSERT INTO tbl_compra (cod_usuario, cod_ruta, fecha_vencimiento, numero_tarjeta,csv) 
+            VALUES (?, ?, ?, ?, ?)`,
+            [req.body.cod_usuario,req.body.ruta, req.body.fecha, req.body.numtarjeta,req.body.csv],
+            function (error, data, fields) {
+                res.send(data);
+                res.end();
+            }
+        );
+        
+    });
+
   //Registro Usuario
 
   app.get('/registroUsuarios', function(req, res){
