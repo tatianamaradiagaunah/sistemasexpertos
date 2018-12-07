@@ -65,6 +65,13 @@ module.exports = function(app, passport) {
          });
     });
 
+    app.get('/plan', function(req, res){
+        res.render('planes.ejs',{
+            user:req.user
+           });
+        res.end();
+         });
+
   //Registro Usuario
 
   app.get('/registroUsuarios', function(req, res){
@@ -72,8 +79,7 @@ module.exports = function(app, passport) {
         user:req.user
        });
     res.end();
-    
-});
+     });
    
    
    app.post("/guardar", function (req, res) {
