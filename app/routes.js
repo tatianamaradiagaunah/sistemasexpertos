@@ -70,7 +70,14 @@ module.exports = function(app, passport) {
             user:req.user
            });
         res.end();
-         });
+    });
+
+    app.get('/registro-plan', function(req, res){
+            res.render('obtener-plan.ejs',{
+                user:req.user
+               });
+            res.end();
+    });
 
   //Registro Usuario
 

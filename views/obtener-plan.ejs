@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>codiGo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Adquirir el Plan </h2>
+  <!-- Trigger the modal with a button -->
+  <a href=""></a>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal2">Pagar con Tarjeta</button>
+  <br><br>
+  <div class="modal-footer">
+    <a href="/planes" class="btn btn-default">Cancelar</a>
+  </div>
+  
+
+  <!-- Modal -->
+  <div class="modal" id="modal2" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div  class="modal-header">
+          <h5 class="modal-title"><strong>Informacion de Compra</strong></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <form>
+                    <div class="paymentFormContainer">
+                        <div class="messageContainer">
+                        </div>
+                        <div class="stepHeader">
+                            <h4 class="stepTitle">Configura tu tarjeta de crédito o débito</h4>
+                        </div>
+                        <div class="fieldContainer">
+                            <div class="">
+                                <span class="logos logos-block">
+                                    <span class="logoIcon VISA"><img src="../public/img/ico_visa.png"></span>
+                                    <span class="logoIcon MASTERCARD"><img src="/public/img/ico_master.png"></span>
+                                    <span class="logoIcon AMEX"><img src="/public/img/icon_amex.png"></span>
+                                    <span class="logoIcon DISCOVERY"><img src="/public/img/icon_discovery.png"></span>
+                                    <span><img src="/public/img/tail_red.gif" style=" width: 25px; height: 25px;"></span>
+                                </span>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input class="form-control" type="tel" placeholder="Número de tarjeta" class="ui-text-input medium" id="numTarjet" >
+                                <br>
+                               <input class="form-control" type="tel" class="ui-text-input medium" placeholder="Fecha de vencimiento (MM/AA)" value="" id="fechaV">
+                                <br>
+                                <input class="form-control" type="tel" data-testid="creditCardSecurityCode" class="ui-text-input medium" placeholder="Código de seguridad (CVV)" id="codigoV">
+                               <br>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class=" modal-footer">
+            <input id="btn-conf-compra" class=" form-control btn-success " type="button"  value="Confirmar compra">
+        </div>
+      </div>
+    </div>
+</div>
+  
+</div>
+
+</body>
+</html>
+
