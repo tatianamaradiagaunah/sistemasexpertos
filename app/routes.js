@@ -65,32 +65,6 @@ module.exports = function(app, passport) {
          });
     });
 
-    app.get('/plan', function(req, res){
-        res.render('planes.ejs',{
-            user:req.user
-           });
-        res.end();
-    });
-
-    app.get('/registro-plan', function(req, res){
-            res.render('obtener-plan.ejs',{
-                user:req.user
-               });
-            res.end();
-    });
-
-    app.post("/comprarboleto", function (req, res) {
-        connection.query(`
-            INSERT INTO tbl_compra (cod_usuario, cod_ruta, fecha_vencimiento, numero_tarjeta,csv) 
-            VALUES (?, ?, ?, ?, ?)`,
-            [req.body.cod_usuario,req.body.ruta, req.body.fecha, req.body.numtarjeta,req.body.csv],
-            function (error, data, fields) {
-                res.send(data);
-                res.end();
-            }
-        );
-        
-    });
 
   //Registro Usuario
 
@@ -129,6 +103,33 @@ module.exports = function(app, passport) {
        );
        
    });
+
+   app.get('/plan', function(req, res){
+    res.render('planes.ejs',{
+        user:req.user
+       });
+    res.end();
+});
+
+app.get('/registro-plan', function(req, res){
+        res.render('obtener-plan.ejs',{
+            user:req.user
+           });
+        res.end();
+});
+
+app.post("/comprarboleto", function (req, res) {
+    connection.query(`
+        INSERT INTO tbl_compra (cod_usuario, cod_ruta, fecha_vencimiento, numero_tarjeta,csv) 
+        VALUES (?, ?, ?, ?, ?)`,
+        [req.body.cod_usuario,req.body.ruta, req.body.fecha, req.body.numtarjeta,req.body.csv],
+        function (error, data, fields) {
+            res.send(data);
+            res.end();
+        }
+    );
+    
+});
    
    
     app.get('/logout', function(req,res){
