@@ -11,7 +11,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="shortcut icon" href="../public/img/icon_bus.ico" type="image/x-icon">
     <link rel="stylesheet" href="../public/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css">
     <title>codiGo</title>
+    <style type="text/css">
+      textarea, iframe{
+          display: block;
+      margin: 10px 0;
+      }
+      iframe{
+          width: 500px;
+          border: 1px solid #a9a9a9;
+      }
+  </style>
   </head>
   <body>
 
@@ -103,7 +114,9 @@
 
 
         <main class="col-xs-12 col-sm-12 col-md-10 col-lg-9 col-xl-9 bg-light mh-100 p-5">
-         
+              <textarea name="code" rows="5" cols="50" placeholder="Type HTML or text here..."></textarea>
+              <button type="button" onclick="updateIframe()">Insert Content</button>
+              <iframe id="myframe"></iframe>
         </main>
     </div>
 
@@ -113,5 +126,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="../public/js/dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" >
+      function updateIframe(){
+          var myFrame = $("#myframe").contents().find('body');
+          var textareaValue = $("textarea").val();
+          myFrame.html(textareaValue);        
+      }
+    </script>
   </body>
 </html>
