@@ -137,6 +137,17 @@ app.post("/comprarboleto", function (req, res) {
     );
     
 });
+
+app.get('/descargar/:id', function(req, res){
+    res.download(__dirname+'/public/img/'+req.params.id,
+    req.params.id,function(err){
+        if(err){
+            console.log(err);
+        }else{
+            console.log("List0");
+        }
+    });
+});
    
    
     app.get('/logout', function(req,res){

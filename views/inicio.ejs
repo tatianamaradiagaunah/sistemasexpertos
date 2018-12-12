@@ -113,7 +113,7 @@
 
 
         <main class="col-xs-12 col-sm-12 col-md-10 col-lg-9 col-xl-9 bg-light mh-100 p-5">
-              <textarea name="code" rows="10" cols="30" placeholder="Type HTML or text here..."></textarea>
+              <textarea id="hola" name="code" rows="10" cols="30" placeholder="Type HTML or text here..."></textarea>
               <textarea name="code" rows="10" cols="30" placeholder="Type HTML or text here..."></textarea>
               <button type="button" onclick="updateIframe()">Insert Content</button>
               <iframe id="myframe"></iframe>
@@ -130,7 +130,7 @@
     <script type="text/javascript" >
       function updateIframe(){
           var myFrame = $("#myframe").contents().find('body');
-          var textareaValue = $("textarea").val();
+          var textareaValue = $("#hola").val();
           myFrame.html(textareaValue);        
       }
     </script>
