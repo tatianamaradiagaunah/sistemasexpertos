@@ -4,7 +4,7 @@ $(document).ready(function(){
 	  lineNumbers : true,
     tabSize:3,
     styleActiveLine: true,
-    theme:"icecoder",
+    theme:"udb-dark",
     matchBrackets: true,
     mode: "text/html"
 	});
@@ -15,7 +15,7 @@ $(document).ready(function(){
 	  lineNumbers : true,
     tabSize:3,
     styleActiveLine: true,
-    theme:"icecoder",
+    theme:"udb-dark",
     matchBrackets: true,
     mode: "javascript"
 	});
@@ -26,7 +26,7 @@ $(document).ready(function(){
 	  lineNumbers : true,
     tabSize:3,
     styleActiveLine: true,
-    theme:"lucario",
+    theme:"udb-dark",
     matchBrackets: true,
     mode: "css"
 	});
