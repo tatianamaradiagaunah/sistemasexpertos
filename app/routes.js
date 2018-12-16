@@ -106,10 +106,12 @@ module.exports = function(app, passport) {
 
    app.get('/codigo', function(req, res){
     res.render('desarrollos.ejs',{
+        
         user:req.user
        });
     res.end();
     });
+
 
    app.get('/plan', function(req, res){
     res.render('planes.ejs',{

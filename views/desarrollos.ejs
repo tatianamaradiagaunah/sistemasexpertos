@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,105 +12,243 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="shortcut icon" href="../public/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../public/css/dashboard.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@1.0.19/dist/vuetify.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
     <title>codiGo</title>
-  </head>
-  <body>
+</head>
+
+<body>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-light encabezado bg-dark sticky-top">
-      <div class="container-fluid">
-        <a href="#" class="navbar-brand text1">
-          <strong>codi</strong>
-          <img src="../public/img/codigo-s.png" height="38px" width="38px">
-          <strong>Go</strong>
-        </a>
-        <button style="background-color: rgb(7, 7, 7); margin-left: auto;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand text1">
+                <strong>codi</strong>
+                <img src="../public/img/codigo-s.png" height="38px" width="38px">
+                <strong>Go</strong>
+            </a>
+            <button style="background-color: rgb(7, 7, 7); margin-left: auto;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <form class="form-inline">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Buscar" aria-label="Username" aria-describedby="basic-addon1">
-                </div>
-              </form>
-            </li>
-            <li class="nav-item active">
-              <a href="/" class="nav-link text-white">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link text-white">Soporte</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link text-white">Ayuda</a>
-            </li>
-            <li class="nav-item">
-              <a href="/logout" class="nav-link text-white">Cerrar sesión</a>
-            </li>
-          </ul>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <form class="form-inline">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Buscar" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </form>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/" class="nav-link text-white">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white">Soporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white">Ayuda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link text-white">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
+
+    <div id="app">
+        <v-app>
+
+            <v-content>
+                <v-container grid-list-md>
+                    <v-layout align-start justify-space-around row fill-height>
+                        <v-flex xs2>
+                            <v-navigation-drawer permanent class="pt-0">
+                                <v-list dense>
+                                    <v-list-tile @click="">
+                                        <v-list-tile-content>
+                                            Todos los Proyectos
+                                        </v-list-tile-content>
+                                    </v-list-tile>
+                                    <v-subheader inset>Carpetas</v-subheader>
+                                    <v-list-tile v-for="item in items_carpetas_cuestionarios" @click="">
+                                        <v-list-tile-content>
+                                            <v-list-tile-title>{{ item }}</v-list-tile-title>
+                                        </v-list-tile-content>
+                                        <v-list-tile-action>
+                                            <v-menu :close-on-content-click="false" :nudge-width="200" v-model="menu" offset-y>
+                                                <v-btn slot="activator" flat icon>
+                                                    <v-icon small>clear</v-icon>
+                                                </v-btn>
+                                                <v-card>
+                                                    <v-card-title>¿Estás seguro de que deseas eliminar esta carpeta?</v-card-title>
+                                                    <v-card-actions>
+                                                        <v-btn flat>Sí, estoy seguro</v-btn>
+                                                        <v-btn flat>Cancelar</v-btn>
+                                                    </v-card-actions>
+                                                </v-card>
+                                            </v-menu>
+                                        </v-list-tile-action>
+                                    </v-list-tile>
+                                    <v-list-tile>
+                                        <v-list-tile-content>
+                                            <v-menu :close-on-content-click="false" :nudge-width="200" v-model="menu" offset-x>
+                                                <v-btn flat small slot="activator">
+                                                    <v-icon outline left color="amber darken-4">crear_nueva_carpeta</v-icon>
+                                                    Crear Carpeta</v-btn>
+                                                <v-card>
+                                                    <template>
+                                                            <v-form ref="form" v-model="valid" lazy-validation>
+                                                              <v-text-field
+                                                                v-model="name"
+                                                                :rules="nameRules"
+                                                                label="Nombre"
+                                                                required
+                                                              ></v-text-field>
+                                                              <v-btn
+                                                                :disabled="false"
+                                                                @click="submit"
+                                                              >
+                                                                Crear
+                                                              </v-btn>
+                                                              <v-btn @click="clear">Borrar</v-btn>
+                                                            </v-form>
+                                                          </template>
+
+                                                </v-card>
+                                            </v-menu>
+                                        </v-list-tile-content>
+                                    </v-list-tile>
+                                </v-list>
+                            </v-navigation-drawer>
+                        </v-flex>
+                        <v-flex xs10>
+                            <v-container grid-list-md>
+                                <v-layout row>
+                                    <v-flex xs12>
+                                        <v-card color="white">
+                                            <v-toolbar dense flat>
+                                                <v-spacer></v-spacer>
+                                                Ordenar por:
+                                                <v-toolbar-items>
+                                                    <v-btn flat>
+                                                        última modificación
+                                                    </v-btn>
+                                                    <v-btn flat>
+                                                        nombre
+                                                    </v-btn>
+                                                </v-toolbar-items>
+                                            </v-toolbar>
+                                            <v-list dense two-line>
+                                                <v-list-tile>
+                                                    <v-menu offset-y>
+                                                        <v-btn slot="activator" round dark block color="pink">
+                                                            <v-icon left dark>add</v-icon>
+                                                            Añadir cuestionario
+                                                        </v-btn>
+                                                        <v-list>
+                                                            <v-list-tile v-for="item in añadir_cuestionario" :key="item.title" avatar @click="">
+                                                                <v-list-tile-action>
+                                                                    <v-icon>{{item.icon}}</v-icon>
+                                                                </v-list-tile-action>
+                                                                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                                                            </v-list-tile>
+                                                        </v-list>
+
+                                                </v-list-tile>
+                                                <v-list-tile v-for="(item, index) in items3" :key="item.title">
+                                                    <v-list-tile-content>
+                                                        <v-list-tile-title>{{ item.title}}</v-list-tile-title>
+                                                        <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>
+                                                    </v-list-tile-content>
+                                                    <v-spacer></v-spacer>
+                                                    <v-menu :close-on-content-click="false" :nudge-width="200" v-model="menu" offset-y>
+
+                                                        <v-btn fab slot="activator" flat icon>
+                                                            <v-icon>folder</v-icon>
+                                                        </v-btn>
+                                                        <v-tooltip bottom> <span>Eliminar</span></v-tooltip>
+
+                                                        <v-card>
+                                                            <v-card>
+                                                                <v-list>
+                                                                    <v-list-tile>
+                                                                        <v-select :items="items_carpetas_cuestionarios" v-model="a1" label="Selecciona">
+                                                                        </v-select>
+                                                                    </v-list-tile>
+                                                                    <v-list-tile>
+                                                                        <v-btn flat>Mover</v-btn>
+                                                                        <v-btn flat>Cancelar</v-btn>
+                                                                    </v-list-tile>
+                                                                </v-list>
+                                                            </v-card>
+                                                        </v-card>
+
+                                                    </v-menu>
+                                                    <v-tooltip bottom>
+                                                        <v-btn fab slot="activator" flat icon>
+                                                            <v-icon dark>visibility</v-icon>
+                                                        </v-btn>
+                                                        <span>Ver</span>
+                                                    </v-tooltip>
+                                                    <v-tooltip bottom>
+                                                        <v-btn fab slot="activator" flat icon>
+                                                            <v-icon dark>arrow_downward</v-icon>
+                                                        </v-btn>
+                                                        <span>Descargar</span>
+                                                    </v-tooltip>
+
+                                                    <v-menu :close-on-content-click="false" :nudge-width="200" v-model="menu" offset-y>
+
+                                                        <v-btn fab slot="activator" flat icon>
+                                                            <v-icon dark>delete</v-icon>
+                                                        </v-btn>
+                                                        <v-tooltip bottom> <span>Eliminar</span></v-tooltip>
+
+                                                        <v-card>
+                                                            <v-card-title>¿Estás seguro de que deseas eliminar este cuestionario?</v-card-title>
+                                                            <v-card-actions>
+                                                                <v-btn flat>Sí, estoy seguro</v-btn>
+                                                                <v-btn flat>Cancelar</v-btn>
+                                                            </v-card-actions>
+                                                        </v-card>
+
+                                                    </v-menu>
+
+                                                </v-list-tile>
+
+                                            </v-list>
+                                            </v-menu>
+                                            </v-list-tile>
+                                            </v-list>
+                                            </v-toolbar>
+                                        </v-card>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-content>
+            <v-footer color="indigo">
+                <v-layout justify-center>
+                    <v-subheader class="white--text">
+                        <v-icon left small dark>far fa-copyright</v-icon>
+                        codiGo</v-subheader>
+                </v-layout>
+            </v-footer>
+        </v-app>
+    </div>
 
     <!-- dashboard -->
 
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-xs-12 col-sm-12 col-md-2 col-lg-3 col-xl-3 bg-secondary p-1 border-right">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item active">
-                <a href="#" class="nav-link text-light">
-                  <i class="fas fa-building"></i> Proyecto
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/profile" class="nav-link text-light">
-                  <i class="fas fa-user"></i> Perfil de usuario
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/empleados" class="nav-link text-light">
-                  <i class="fas fa-user"></i> Perfil de empleado
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link text-light">
-                  <i class="fas fa-chalkboard-teacher"></i> Reclamar sitio web
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link text-light">
-                  <i class="fas fa-cogs"></i> Configuracion
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/planes" class="nav-link text-light">
-                  <i class="fas fa-shopping-cart"></i> Comprar plan
-                </a>
-              </li>
-              <!-- <li class="nav-item">
-                <a href="#" class="nav-link text-light">
-                  <i class="fas fa-list-alt"></i> Listado de choferes
-                </a>
-              </li> -->
-              <li class="nav-item">
-                <a href="#" class="nav-link text-light">
-                  <i class="fas fa-money-check"></i> Estado de cuenta
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
 
-
-        <main class="col-xs-12 col-sm-12 col-md-10 col-lg-9 col-xl-9 bg-light mh-100 p-5">
-        </main>
-    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -117,5 +256,89 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="../public/js/dashboard.js"></script>
-  </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@1.0.19/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    drawer: null,
+                    dialog_contraseña: false,
+                    dialog_concesionarios: false,
+                    dialog_jefesventa: false,
+                    dialog_marcas: false,
+                    dialog_modelos: false,
+                    dialog_vendedores: false,
+                    items_localizaciones_en_activo: ['Ceuta y Melilla', 'Fuerteventura', 'Gran Canaria', 'La Gomera',
+                        'La Palma', 'Lanzarote', 'Tenerife'
+                    ],
+                    items_modelos_en_activo: ['Audi A3', 'Audi A4', 'Audi A5', 'VW Polo', 'VW Golf', 'Skoda Fabia', 'Renault Megane',
+                        'Renault Clio'
+                    ],
+                    items_marcas_en_activo: ['Audi', 'Volkswagen', 'Skoda', 'Hyundai', 'Renault'],
+                    items_concesionarios_en_activo: [{
+                        nombre: 'Delfinauto',
+                        localización: 'Gran Canaria'
+                    }, {
+                        nombre: 'Autos Domínguez Maspalomas',
+                        localización: 'Gran Canaria'
+                    }, {
+                        nombre: 'Autos Yánez',
+                        localización: 'Tenerife'
+                    }, {
+                        nombre: 'iVecindario',
+                        localización: 'Gran Canaria'
+                    }, {
+                        nombre: 'iGranCanaria',
+                        localización: 'Gran Canaria'
+                    }],
+                    items_jefesdeventa: [{
+                        nombre: 'David Medina Torres',
+                        concesionario: 'Delfinauto'
+                    }],
+                    items_concesionarios: ['Delfinauto', 'Autos Domínguez Maspalomas', 'Autos Yánez', 'iVecindario', 'iGranCanaria'],
+                    items_vendedores: [{
+                        nombre: 'Juan Gómez Padilla',
+                        concesionario: 'Autos Domínguez Maspalomas'
+                    }, {
+                        nombre: 'Melania Sánchez Trujillo',
+                        concesionario: 'Delfinauto'
+                    }],
+                    items_carpetas_cuestionarios: ['Audi', 'Skoda', 'Volkswagen'],
+                    añadir_cuestionario: [{
+                        title: 'Crear desde cero',
+                        icon: 'control_point'
+                    }, {
+                        title: 'Crear desde plantilla',
+                        icon: 'filter_none'
+                    }],
+                    items3: [{
+                        title: 'Skoda Fabia 2018',
+                        subtitle: '25/07/2018'
+                    }, {
+                        title: 'VW Polo 2018',
+                        subtitle: '14/06/2018'
+                    }]
+                }
+
+                fav: true,
+                    menu;
+                false,
+                message;
+                false,
+                hints;
+                true
+                valid: true,
+                    name;
+                '',
+                nameRules;
+                [
+                    v => !!v || 'Name is required'
+                ]
+            }
+        });
+    </script>
+</body>
+
 </html>
